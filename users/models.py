@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from birthday import BirthdayField, BirthdayManager
+# from birthday import BirthdayField, BirthdayManager
 
 
 class User(AbstractUser):

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # third-party
     'rest_framework',
     'corsheaders',
+    'django_filters',
 
     # custom-app
     'users',
@@ -142,6 +143,36 @@ CORS_ALLOW_HEADERS = default_headers + (
 
 CORS_ALLOW_ALL_ORIGIN = True
 CORS_ORIGIN_ALLOW_ALL = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.FormParser',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissions',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    #     'rest_framework.authentication.TokenAuthentication',
+    # ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
