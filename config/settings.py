@@ -16,6 +16,7 @@ from corsheaders.defaults import default_headers
 from environ import Env
 import os
 from datetime import timedelta
+from decouple import config
 
 env = Env()
 env.read_env()
@@ -28,13 +29,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-*@e-&wo!8o*s)ju*n&6u!zc_nh&pwnxfag_p#=jnc378z(7z8^"
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("DEBUG")
-DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+DEBUG = config("DEBUG")
+
+ALLOWED_HOSTS = ['*', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -239,7 +240,7 @@ SWAGGER_SETTINGS = {
     'DOC_EXPANSION': False
 
 }
-APPEND_SLASH = False
+# APPEND_SLASH = False
 
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'PNG': ".png"}
 DJANGORESIZED_DEFAULT_QUALITY = 75
