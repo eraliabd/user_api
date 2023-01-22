@@ -18,3 +18,13 @@ class User(AbstractUser):
     updated = models.DateTimeField(auto_now=True)
 
     # objects = BirthdayManager()
+
+
+class Person(models.Model):
+    owner = models.CharField(max_length=50)
+    title = models.CharField(max_length=255)
+    language = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.owner
+
