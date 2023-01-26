@@ -57,7 +57,7 @@ from .serializers import UserSerializer, PersonSerializer
 class UserListCreateApiView(ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (AllowAny, )
     parser_classes = [FormParser, MultiPartParser]
 
     # def perform_create(self, serializer):
