@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 # from birthday import BirthdayField, BirthdayManager
 
 
@@ -17,7 +17,11 @@ class User(AbstractUser):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    # objects = BirthdayManager()
+    objects = UserManager()
+
+    def validate_password(self, password):
+        password_set = self.set_password(password)
+        return password_set
 
 
 class Person(models.Model):
